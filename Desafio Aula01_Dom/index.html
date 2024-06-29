@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        .container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 400px;
+        }
+    </style>
+</head>
+<body>
+    <div class="conteiner">
+        <h1>Desáfio Prático</h1>
+        <p>Faça um Programa que pergunte quanto você
+            ganha por hora e o número de horas trabalhadas
+            no mês. Calcule e mostre o total do seu salário no
+            referido mês, sabendo-se que são descontados 11%
+            para o Imposto de Renda, 8% para o INSS e 5% para            
+            o sindicato, faça um programa que nos dê:</p>
+            <ol>
+                <li>Salário Bruto</li>
+                <li>Quanto Pagou de INSS</li>
+                <li>Quanto Pagou ao Sindicato</li>
+                <li>Salário Líquido</li>
+                <li>Calcule os Descontos e o Salário Líquido</li>
+            </ol>
+            <form id="form">
+                <label for="vlrhora">Quanto você ganha por hora:</label>
+                <input type="number" name="vlrhora" id="vlrhora">
+                <label for="numberhoras">Número de Horas Trabalhadas:</label>
+                <input type="number" name="numberhoras" id="numberhoras">
+                <button type="button" onclick="salario()">Calcular</button>
+            </form>
+            <p>SALÁRIO BRUTO: R$ <span id="sb"></span></p>
+            <h2>Descontos</h2>
+            <ul>
+                <li>11% Imposto de Renda: R$ <span id="ir"></span></li>
+                <li> 8% INSS: R$ <span id="inss"></span></li>
+                <li> 5% Sindicato: R$ <span id="sind"></span></li>
+            </ul>
+            <p>SALÁRIO LÍQUIDO:<span id="sl"></span></p>
+    </div>
+    <script>
+        const salario = () =>{
+
+            let vlrHora = parseFloat(document.getElementById('vlrhora').value);
+            let numberHoras = parseFloat(document.getElementById('numberhoras').value);
+            let salariobruto = (vlrHora * numberHoras);
+            document.getElementById('sb').textContent = salariobruto.toFixed(2);
+            let descontoIR = (salariobruto * 11)/100;
+            document.getElementById('ir').textContent = descontoIR.toFixed(2);
+            let descontoINSS = (salariobruto * 8)/100;
+            document.getElementById('inss').textContent = descontoINSS.toFixed(2);
+            let descontoSIND = (salariobruto * 5)/100;
+            document.getElementById('sind').textContent = descontoSIND.toFixed(2);
+            let salarioliquido = (salariobruto - descontoIR - descontoINSS - descontoSIND);
+            document.getElementById('sl').textContent = salarioliquido.toFixed(2);
+
+        }
+
+    </script>
+    
+</body>
+</html>
